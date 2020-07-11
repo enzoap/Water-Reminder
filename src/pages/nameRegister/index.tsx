@@ -1,9 +1,16 @@
 import React from 'react'
 import Constants from 'expo-constants'
-import { RectButton } from "react-native-gesture-handler";
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { RectButton } from "react-native-gesture-handler"
+import { StyleSheet, Text, View, TextInput } from 'react-native'
+import {useNavigation} from '@react-navigation/native'
 
 const NameRegister = () => {
+  const navigation = useNavigation()
+
+  function handleNavigationToOptionsRegister(){
+    navigation.navigate('OptionsRegister')
+  }
+
     return (
         <View style={styles.container}>
           <View style={styles.main}>
@@ -12,7 +19,7 @@ const NameRegister = () => {
             <TextInput style={styles.input} placeholder="Nome" autoFocus={true}></TextInput>
           </View>
           <View style={styles.footer}>
-            <RectButton style={styles.button}>
+            <RectButton style={styles.button} onPress={handleNavigationToOptionsRegister}>
               <Text style={styles.textButton}>Continuar</Text>
             </RectButton>
           </View>
