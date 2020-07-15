@@ -1,14 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Constants from 'expo-constants'
 import { RectButton } from "react-native-gesture-handler"
 import { StyleSheet, Text, View, TextInput } from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 
 const NameRegister = () => {
+  const [name, setName] = useState('')
+  
   const navigation = useNavigation()
 
   function handleNavigationToOptionsRegister(){
-    navigation.navigate('OptionsRegister')
+    navigation.navigate('OptionsRegister', {
+      name
+    })
+  }
+
+  function handleName(name: string){
+    setName(name)
   }
 
     return (
@@ -16,7 +24,7 @@ const NameRegister = () => {
           <View style={styles.main}>
             <Text style={ styles.title}>Water Reminder</Text>
             <Text style={ styles.description}>Bem vindo, para começar a usar o app, por favor entre com seu nome:</Text>
-            <TextInput style={styles.input} placeholder="Nome" autoFocus={true}></TextInput>
+            <TextInput style={styles.input} placeholder="Nome" autoFocus={true} onChangeText={(name) => handleName(name)}></TextInput>
           </View>
           <View style={styles.footer}>
             <RectButton style={styles.button} onPress={handleNavigationToOptionsRegister}>

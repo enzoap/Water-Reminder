@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import NameRegister from './pages/nameRegister'
 import OptionsRegister from './pages/optionsRegister'
-import App from "../App";
+import AppDetail from './pages/appDetail'
 
 const AppStack = createStackNavigator()
 
@@ -19,6 +19,7 @@ const Routes = () => {
 
             <AppStack.Screen name="NameRegister" component={NameRegister} />
             <AppStack.Screen name="OptionsRegister" component={OptionsRegister} />
+            <AppStack.Screen name="AppDetail" component={AppDetail} />
             
             </AppStack.Navigator>
         </NavigationContainer>
