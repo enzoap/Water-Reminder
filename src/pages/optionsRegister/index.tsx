@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import Constants from 'expo-constants'
 import { RectButton } from "react-native-gesture-handler"
-import {View, Text, StyleSheet} from 'react-native'
+import {Feather as Icon} from '@expo/vector-icons'
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import {Picker} from '@react-native-community/picker'
 import {useNavigation, useRoute} from '@react-navigation/native'
 
@@ -43,6 +44,10 @@ const OptionsRegister = () => {
     })
   }
 
+  function handleNavigationBack(){
+    navigation.goBack()
+  }
+
   function handleValuePicker(itemValue: string | number){
     setValuePickerHourInterval(String(itemValue))
   }
@@ -57,9 +62,12 @@ const OptionsRegister = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.main}>
-              <Text style={styles.description}>Agora selecione a cada quanto tempo você gostaria de ser lembrado.</Text>
-            </View>
+          <TouchableOpacity onPress={handleNavigationBack}>
+            <Icon name="arrow-left" size={20} color="black"></Icon>
+          </TouchableOpacity>
+          <View style={styles.main}>
+            <Text style={styles.description}>Agora selecione a cada quanto tempo você gostaria de ser lembrado.</Text>
+          </View>
             <View style={styles.picker}>
               <Picker mode='dropdown' selectedValue={valuePickerHourInterval} onValueChange={(itemValue, itemIndex) => handleValuePicker(itemValue)}>
                 <Picker.Item label='1 hora' value='1 hora'/>
