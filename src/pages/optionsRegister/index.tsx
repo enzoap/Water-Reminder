@@ -15,9 +15,9 @@ interface Item {
 }
 
 const OptionsRegister = () => {
-  const [valuePickerHourInterval, setValuePickerHourInterval] = useState('1 hora')
-  const [valuePickerDay, setValuePickerDay] = useState('')
-  const [valuePickerNight, setValuePickerNight] = useState('')
+  const [valuePickerHourInterval, setValuePickerHourInterval] = useState('1')
+  const [valuePickerDay, setValuePickerDay] = useState('00:00')
+  const [valuePickerNight, setValuePickerNight] = useState('00:00')
   
   let hourArr:Item = {hour: []}
   
@@ -70,9 +70,9 @@ const OptionsRegister = () => {
           </View>
             <View style={styles.picker}>
               <Picker mode='dropdown' selectedValue={valuePickerHourInterval} onValueChange={(itemValue, itemIndex) => handleValuePicker(itemValue)}>
-                <Picker.Item label='1 hora' value='1 hora'/>
-                <Picker.Item label='2 horas' value='2 horas'/>
-                <Picker.Item label='3 horas' value='3 horas'/>
+                <Picker.Item label='1 hora' value='1'/>
+                <Picker.Item label='2 horas' value='2'/>
+                <Picker.Item label='3 horas' value='3'/>
               </Picker>
             </View>
             <View style={styles.main}>

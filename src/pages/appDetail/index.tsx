@@ -4,6 +4,7 @@ import {RectButton} from 'react-native-gesture-handler'
 import {Feather as Icon} from '@expo/vector-icons'
 import Constants from 'expo-constants'
 import {useNavigation, useRoute} from '@react-navigation/native'
+import storage from '@react-native-community/async-storage'
 
 interface Params {
   name: string,
@@ -21,6 +22,25 @@ const AppDetail = () => {
     navigation.goBack()
   }
 
+  function handleNavigationToHome(){
+    setUserData()
+    
+  }
+
+  async function setUserData(){
+    await storage.multiSet([
+      ['name', routeParams.name], 
+      ['hourInterval', routeParams.hourInterval],
+      ['start', routeParams.start],
+      ['down', routeParams.down],
+      ['logged', 'true']
+    ])
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'Home'}]
+    })
+  }
+
     return(
         <View style={styles.container}>
           <TouchableOpacity onPress={handleNavigationBack}>
@@ -31,7 +51,7 @@ const AppDetail = () => {
             <Text style={styles.description}>Você pode clicar no botão para acrescentar mais 200ml no seu dia.</Text>
           </View>
           <View style={styles.footer}>
-            <RectButton style={styles.button}>
+            <RectButton style={styles.button} onPress={handleNavigationToHome}>
               <Text style={styles.textButton}>Continuar</Text>
             </RectButton>
           </View>
