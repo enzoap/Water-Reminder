@@ -33,6 +33,7 @@ const AppDetail = () => {
       ['hourInterval', routeParams.hourInterval],
       ['start', routeParams.start],
       ['down', routeParams.down],
+      ['water', '0'],
       ['logged', 'true']
     ])
     navigation.reset({
