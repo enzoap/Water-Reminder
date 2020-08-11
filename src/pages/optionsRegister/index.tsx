@@ -70,9 +70,9 @@ const OptionsRegister = () => {
           </View>
             <View style={styles.picker}>
               <Picker mode='dropdown' selectedValue={valuePickerHourInterval} onValueChange={(itemValue, itemIndex) => handleValuePicker(itemValue)}>
-                <Picker.Item label='1 hora' value='1'/>
-                <Picker.Item label='2 horas' value='2'/>
-                <Picker.Item label='3 horas' value='3'/>
+                <Picker.Item label='1 hora' value='3600'/>
+                <Picker.Item label='2 horas' value='7200'/>
+                <Picker.Item label='3 horas' value='10800'/>
               </Picker>
             </View>
             <View style={styles.main}>

@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native'
 import { RectButton } from "react-native-gesture-handler"
+import * as Notifications from 'expo-notifications'
 import {Feather as Icon} from '@expo/vector-icons'
 import Constants from 'expo-constants'
 import storage from '@react-native-community/async-storage'
+import * as BackgroundFetch from 'expo-background-fetch'
 
 const Home = () => {
     const [icon, setIcon] = useState(require(`../../assets/cup-of-water.png`))
@@ -13,17 +15,47 @@ const Home = () => {
     const [start, setStart] = useState('')
     const [down, setDown] = useState('')
     const [water, setWater] = useState('')
+    const [hour, setHour] = useState(1)
 
     useEffect(()=> {
         storage.multiGet(['name', 'hourInterval', 'start', 'down', 'water']).
         then(response => {
-            setName(response[0][1]!)
-            setHourInterval(response[1][1]!)
-            setStart(response[2][1]!)
             setDown(response[3][1]!)
+            setName(response[0][1]!)
+            setStart(response[2][1]!)
             setWater(response[4][1]!)
+            setHourInterval(response[1][1]!)
+            setHour(new Date().getHours())
         })
-    },[])
+    })
+
+    useEffect(() => {
+        handleOnOffNotifications()
+    })
+
+    function handleOnOffNotifications(){
+        console.log(start, down)
+        if(Number(start.substring(0,2)) <= hour){
+            console.log('1')
+            if(Number(down.substring(0,2)) >= hour){
+                console.log('2')
+                Notifications.scheduleNotificationAsync({
+                    content: {
+                      title: "Hora de beber água!"
+                    },
+                    trigger: {
+                      seconds: Number(hourInterval),
+                      repeats: true
+                    },
+                  });
+            }else {
+                Notifications.cancelAllScheduledNotificationsAsync()
+            }
+        }else {
+            Notifications.cancelAllScheduledNotificationsAsync()
+        }
+    }
+
 
     function changeImage(){
         if(count === 200 ){
@@ -45,7 +77,6 @@ const Home = () => {
         const result = ml + Number(water)
         setWater(result.toString())
         storage.setItem('water', water)
-        console.log(await storage.getItem('water'))
     }
    
     return (
