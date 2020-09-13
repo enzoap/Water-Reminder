@@ -6,6 +6,7 @@ import OptionsRegister from './pages/optionsRegister'
 import AppDetail from './pages/appDetail'
 import Home from './pages/home'
 import Initial from './pages/initial'
+import ChangeOptions from './pages/changeOptions'
 import storage from '@react-native-community/async-storage'
 
 const AppStack = createStackNavigator() 
@@ -47,7 +48,7 @@ const Routes = () => {
                     <AppStack.Screen name="Initial" component={Initial} />
             </> )} 
             <AppStack.Screen name="Home" component={Home} />
-            
+            <AppStack.Screen name="ChangeOptions" component={ChangeOptions} />
             
             </AppStack.Navigator>
         </NavigationContainer>

@@ -20,7 +20,9 @@
       "supportsTablet": true
     },
     "android": {
-      "useNextNotificationsApi": true
+      "useNextNotificationsApi": true,
+      "package": "com.enzo.waterreminder",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
