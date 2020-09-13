@@ -15,7 +15,7 @@ interface Item {
 }
 
 const OptionsRegister = () => {
-  const [valuePickerHourInterval, setValuePickerHourInterval] = useState('1')
+  const [valuePickerHourInterval, setValuePickerHourInterval] = useState('3600')
   const [valuePickerDay, setValuePickerDay] = useState('00:00')
   const [valuePickerNight, setValuePickerNight] = useState('00:00')
   
