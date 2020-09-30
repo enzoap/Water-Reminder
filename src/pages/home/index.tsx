@@ -88,7 +88,7 @@ const Home = () => {
                           title: "Hora de beber água!"
                         },
                         trigger: {
-                          seconds: 20,
+                          seconds: Number(hourInterval),
                           repeats: true
                         },
                     })
