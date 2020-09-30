@@ -24,7 +24,6 @@ const ChangeOptions = () => {
   useEffect(() => {
     storage.multiGet(['hourInterval', 'start', 'down']).
     then(response => {
-        console.log(response[1][1])
         setValuePickerNight(response[2][1]!)
         setValuePickerDay(response[1][1]!)
         setValuePickerHourInterval(response[0][1]!)
